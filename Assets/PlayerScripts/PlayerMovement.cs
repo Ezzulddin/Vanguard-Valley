@@ -1,23 +1,30 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    // Variables 
+    // Components and input actions for player controller
 
     private CharacterController controller;
 
+    private InputAction sprintAction;
     private InputAction moveAction;
     private InputAction jumpAction;
 
-    [SerializeField] private Transform cameraTransform;
+    // Store player's vertical velocity for gravity and jumping
 
     private float verticalVelocity;
+
+
+
+    //Reference to the camera transform for movement direction
+    [SerializeField] private Transform cameraTransform;
+
+    //Movement settings, exposed in the Unity Inspector for easy tweaking
     [SerializeField] private float jumpHeight = 1f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float sprintSpeed = 8f;
 
     private void Awake()
     {
@@ -25,11 +32,16 @@ public class PlayerMovement : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
 
+        // Get the PlayerInput component to access input actions
+        // defined in the Input Actions asset
+
         PlayerInput playerInput = GetComponent<PlayerInput>();
 
         moveAction = playerInput.actions["Move"];
 
         jumpAction = playerInput.actions["Jump"];
+
+        sprintAction = playerInput.actions["Sprint"];
 
     }
 
@@ -47,7 +59,28 @@ public class PlayerMovement : MonoBehaviour
 
         forward.Normalize();
         right.Normalize();
+
         Vector3 movement = forward * input.y + right * input.x;
+
+
+        if (movement.magnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                10f * Time.deltaTime
+             );
+
+        }
+
+
+
+        // Use sprint speed if the sprint action is pressed, otherwise use normal move speed
+
+        float currentSpeed = sprintAction.IsPressed() ? sprintSpeed : moveSpeed;
+
+        Vector3 horizontalMovement = movement * currentSpeed;
 
         // Gravity on the player
 
@@ -65,9 +98,10 @@ public class PlayerMovement : MonoBehaviour
 
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
-        movement.y = verticalVelocity;
+        Vector3 finalMovement = horizontalMovement;
+        finalMovement.y = verticalVelocity;
 
-        controller.Move(movement * 5f * Time.deltaTime);
+        controller.Move(finalMovement * Time.deltaTime);
 
     }
 }
