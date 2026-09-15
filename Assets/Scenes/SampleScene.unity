@@ -1105,8 +1105,6 @@ MonoBehaviour:
   m_Script: {fileID: 1534528637}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFlowAnimator
-  flowSpeed: 0.5
-  flowDirection: {x: 0, y: 1}
 --- !u!23 &382852706
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1936,8 +1934,6 @@ MonoBehaviour:
   m_Script: {fileID: 1534528637}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFlowAnimator
-  flowSpeed: 0.5
-  flowDirection: {x: 0, y: 1}
 --- !u!23 &913065378
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2102,8 +2098,6 @@ MonoBehaviour:
   m_Script: {fileID: 1534528637}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFlowAnimator
-  flowSpeed: 0.5
-  flowDirection: {x: 0, y: 1}
 --- !u!23 &957351539
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2161,16 +2155,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957351536}
   m_Mesh: {fileID: 183758099}
---- !u!20 &1181520081 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 399709953513409529, guid: 32fad14342023464e821f25af9a69b87, type: 3}
-  m_PrefabInstance: {fileID: 442572039}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1181520082 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5910915116170461920, guid: 32fad14342023464e821f25af9a69b87, type: 3}
-  m_PrefabInstance: {fileID: 442572039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1435156913
 Mesh:
   m_ObjectHideFlags: 0
@@ -2425,6 +2409,11 @@ MonoScript:
   m_ClassName: WaterFlowAnimator
   m_Namespace: 
   m_AssemblyName: Assembly-CSharp
+--- !u!4 &1693858642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5299727638177643390, guid: 5a14382d1bf5d3e428525f26a674a097, type: 3}
+  m_PrefabInstance: {fileID: 184254978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1697785714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4511da48e90494e846b40eff9caf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  cameraTransform: {fileID: 1181520082}
+  cameraTransform: {fileID: 1693858642}
   jumpHeight: 1
   moveSpeed: 2.5
   sprintSpeed: 8
@@ -2630,7 +2619,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 1181520081}
+  m_Camera: {fileID: 0}
 --- !u!143 &1826986412
 CharacterController:
   m_ObjectHideFlags: 0
