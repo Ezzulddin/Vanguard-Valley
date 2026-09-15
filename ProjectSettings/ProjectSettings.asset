@@ -907,7 +907,13 @@ PlayerSettings:
   XboxOneXTitleMemory: 8
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -930,11 +936,11 @@ PlayerSettings:
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
   enableDirectStorage: 0
-  cloudProjectId: 519c531f-46e7-4957-bebd-4f824f14a02d
+  cloudProjectId: c842c106-308e-4a66-bdcb-6acd8e4267cf
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Vanguard Valley Game
-  organizationId: ezzuz
+  organizationId: jamiec5005
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

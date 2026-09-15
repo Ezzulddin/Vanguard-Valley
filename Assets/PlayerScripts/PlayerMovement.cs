@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintSpeed = 8f;
 
+    [SerializeField] private Animator animator; // Reference to the Animator component for controlling animations
+
     private void Awake()
     {
         // Get the CharacterController component attached to the player
@@ -42,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
 
         sprintAction = playerInput.actions["Sprint"];
-
     }
 
     private void Update()
@@ -51,7 +52,16 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 input = moveAction.ReadValue<Vector2>();
 
+        bool isWalking = input.magnitude > 0.1f;    
+        bool isSprinting = isWalking && sprintAction.IsPressed();
+
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isSprinting", isSprinting);
+
+
         Vector3 forward = cameraTransform.forward;
+
+
         Vector3 right = cameraTransform.right;
 
         forward.y = 0f;

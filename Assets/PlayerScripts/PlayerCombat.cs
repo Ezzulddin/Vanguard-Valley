@@ -13,6 +13,8 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private LayerMask enemyLayer;
 
+    [SerializeField] private Animator animator;
+
     private float attackTimer;
 
     private void Awake()
@@ -47,6 +49,13 @@ public class PlayerCombat : MonoBehaviour
         // Reset the attack cooldown timer
         attackTimer = attackCooldown;
 
+        Debug.Log("Animator enabled: " + animator.enabled);
+        Debug.Log("Triggering isPunching on: " + animator.gameObject.name);
+
+
+
+        animator.SetTrigger("isPunching");
+
         Physics.SyncTransforms();
 
         // Implement attack logic here (e.g., play animation, detect hits, etc.)
@@ -59,28 +68,16 @@ public class PlayerCombat : MonoBehaviour
             QueryTriggerInteraction.Collide
         );
 
-        Debug.Log("Number of objects hit: " + hits.Length);
-
         foreach (Collider hit in hits)
         {
-
-            Debug.Log("Attack hit" + hit.gameObject.name);
 
             EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
 
             if (enemy != null)
             {
-                Debug.Log("Enemy found! Applying damage.");
                 enemy.TakeDamage(attackDamage);
             }
         }
-
-
-        //print to console when the player attacks
-        Debug.Log("Player attacked!");
     }
-
-
-
 
 }
